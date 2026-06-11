@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Rewards Easily</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --gold: #C9A84C;
+      --bg: #111111;
+      --bg2: #1A1A1A;
+      --text: #FFFFFF;
+      --text-sec: #888888;
+      --text-muted: #444444;
+      --border: #2A2A2A;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--gold); text-decoration: none; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(17,17,17,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-size: 18px; font-weight: 800; letter-spacing: -0.5px; }
+    .nav-logo span { color: var(--gold); }
+    .nav-back { font-size: 14px; color: var(--text-sec); }
+    .nav-back:hover { color: var(--text); }
+    .page-section {
+      max-width: 760px; margin: 0 auto;
+      padding: 120px 24px 80px;
+    }
+    h1 { font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+    .subtitle { font-size: 16px; color: var(--text-muted); margin-bottom: 48px; }
+    .support-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 28px 32px; margin-bottom: 16px;
+    }
+    .support-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+    .support-card p { font-size: 14px; color: var(--text-sec); line-height: 1.8; }
+    .support-email {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 6px; padding: 12px 20px;
+      font-size: 14px; color: var(--gold); font-weight: 600;
+      margin-top: 16px;
+    }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 40px;
+      text-align: center;
+      font-size: 13px; color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Rewards <span>Easily</span></div>
+  <a class="nav-back" href="index.html">← Back to Home</a>
+</nav>
+
+<div class="page-section">
+  <h1>Support</h1>
+  <div class="subtitle">We're here to help</div>
+
+  <div class="support-card">
+    <h3>🃏 How do I add my credit cards?</h3>
+    <p>Tap the <strong>My Cards</strong> tab at the bottom of the app. Use the search bar to find your card by name, then tap the + button to add it to your wallet.</p>
+  </div>
+
+  <div class="support-card">
+    <h3>🔍 My merchant isn't being recognized</h3>
+    <p>Not every merchant is in our database yet. If a search doesn't find a match, simply pick the closest spending category manually (e.g. choose "Dining" for a restaurant).</p>
+  </div>
+
+  <div class="support-card">
+    <h3>📱 How do I sync across devices?</h3>
+    <p>Create a free account by tapping <strong>Log In</strong> on the My Cards screen. Once signed in, your cards sync automatically across all your devices.</p>
+  </div>
+
+  <div class="support-card">
+    <h3>🗑️ How do I delete my account?</h3>
+    <p>Go to the <strong>My Cards</strong> tab → scroll to the bottom → tap <strong>Delete Account</strong>. This permanently removes your account and all saved data.</p>
+  </div>
+
+  <div class="support-card">
+    <h3>📧 Still need help?</h3>
+    <p>Send us an email and we'll get back to you within 24 hours.</p>
+    <a class="support-email" href="mailto:support@rewardseasily.app">✉️ support@rewardseasily.app</a>
+  </div>
+</div>
+
+<footer>© 2025 Redwoods LLC</footer>
+
+</body>
+</html>
