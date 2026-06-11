@@ -272,9 +272,31 @@
     #home-page { display: block; }
 
     /* ── RESPONSIVE ── */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer;
+      background: none; border: none; padding: 4px;
+    }
+    .hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; display: block; transition: 0.3s; }
+    .mobile-menu {
+      display: none; flex-direction: column;
+      position: fixed; top: 64px; left: 0; right: 0; z-index: 99;
+      background: rgba(17,17,17,0.98); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px 24px;
+      gap: 4px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 16px; color: var(--text-sec); font-weight: 500;
+      padding: 12px 0; border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+
     @media (max-width: 640px) {
       nav { padding: 0 20px; }
       .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .hamburger { display: flex; }
       footer { flex-direction: column; align-items: flex-start; }
     }
   </style>
@@ -291,7 +313,19 @@
     <a href="#" onclick="showPage('privacy'); return false;">Privacy</a>
   </div>
   <a class="nav-cta" href="#download" onclick="showPage('home')">Download</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#features" onclick="showPage('home'); closeMenu()">Features</a>
+  <a href="#how" onclick="showPage('home'); closeMenu()">How It Works</a>
+  <a href="#" onclick="showPage('support'); closeMenu(); return false;">Support</a>
+  <a href="#" onclick="showPage('privacy'); closeMenu(); return false;">Privacy Policy</a>
+  <a href="https://apps.apple.com/app/rewards-easily/id6776093993" target="_blank" style="color:var(--gold)">⬇ Download on App Store</a>
+</div>
 
 <!-- ═══════════════════════════════════════════════════════ HOME PAGE -->
 <div id="home-page" class="page active">
@@ -517,6 +551,12 @@
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(name + '-page').classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function toggleMenu() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobile-menu').classList.remove('open');
   }
 </script>
 
