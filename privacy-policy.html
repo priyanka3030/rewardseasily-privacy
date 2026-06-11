@@ -1,138 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy — Rewards Easily</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --gold: #C9A84C;
+      --bg: #111111;
+      --bg2: #1A1A1A;
+      --text: #FFFFFF;
+      --text-sec: #888888;
+      --text-muted: #444444;
+      --border: #2A2A2A;
+    }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #f9f9f9;
-      color: #1c1c1c;
-      line-height: 1.7;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
-    header {
-      background: #1c1c1c;
-      padding: 32px 24px;
-      text-align: center;
+    a { color: var(--gold); text-decoration: none; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(17,17,17,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
     }
-    header h1 { color: #ffffff; font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
-    header h1 span { color: #C9A84C; }
-    header p { color: #888; font-size: 14px; margin-top: 6px; }
-    .container {
-      max-width: 720px;
-      margin: 48px auto;
-      background: #ffffff;
-      border-radius: 12px;
-      border: 1px solid #e8e8e8;
-      padding: 48px 56px;
+    .nav-logo { font-size: 18px; font-weight: 800; letter-spacing: -0.5px; }
+    .nav-logo span { color: var(--gold); }
+    .nav-back { font-size: 14px; color: var(--text-sec); }
+    .nav-back:hover { color: var(--text); }
+    .page-section {
+      max-width: 760px; margin: 0 auto;
+      padding: 120px 24px 80px;
     }
-    .effective-date {
-      font-size: 13px;
-      color: #999;
-      margin-bottom: 36px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid #f0f0f0;
-    }
-    h2 {
-      font-size: 17px;
-      font-weight: 700;
-      color: #1c1c1c;
-      margin: 36px 0 12px;
-    }
-    h2:first-of-type { margin-top: 0; }
-    p { font-size: 15px; color: #444; margin-bottom: 12px; }
-    ul {
-      margin: 8px 0 12px 20px;
-      color: #444;
-    }
-    ul li { font-size: 15px; margin-bottom: 6px; }
-    .contact-box {
-      background: #f7f4ee;
-      border-left: 4px solid #C9A84C;
-      border-radius: 4px;
-      padding: 20px 24px;
-      margin-top: 16px;
-    }
-    .contact-box p { margin: 0; color: #555; }
-    .contact-box strong { color: #1c1c1c; }
+    h1 { font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+    .updated { font-size: 13px; color: var(--text-muted); margin-bottom: 48px; }
+    h2 { font-size: 18px; font-weight: 700; margin: 36px 0 12px; color: var(--gold); }
+    p, li { font-size: 15px; color: var(--text-sec); line-height: 1.8; margin-bottom: 12px; }
+    ul { padding-left: 20px; }
     footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 40px;
       text-align: center;
-      padding: 32px 24px;
-      font-size: 13px;
-      color: #bbb;
-    }
-    @media (max-width: 640px) {
-      .container { margin: 16px; padding: 28px 24px; }
+      font-size: 13px; color: var(--text-muted);
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Rewards <span>Easily</span></h1>
-  <p>Privacy Policy</p>
-</header>
+<nav>
+  <div class="nav-logo">Rewards <span>Easily</span></div>
+  <a class="nav-back" href="index.html">← Back to Home</a>
+</nav>
 
-<div class="container">
-  <p class="effective-date">Effective Date: June 3, 2026 &nbsp;·&nbsp; Redwoods LLC</p>
+<div class="page-section">
+  <h1>Privacy Policy</h1>
+  <div class="updated">Last updated: June 2025</div>
 
-  <h2>1. Introduction</h2>
-  <p>Rewards Easily ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our mobile application. By using the App, you agree to the practices described in this policy.</p>
+  <p>Rewards Easily ("we," "our," or "us") is committed to protecting your privacy. This policy explains what information we collect, how we use it, and your rights.</p>
 
-  <h2>2. Information We Collect</h2>
-  <p>We collect the following information:</p>
+  <h2>Information We Collect</h2>
+  <p>When you use Rewards Easily as a guest, we do not collect any personal information. If you create an account, we collect:</p>
   <ul>
-    <li><strong>Email address</strong> — collected when you create an account, used to identify your account and sync your data across devices.</li>
-    <li><strong>Credit card selections</strong> — the cards you add to your wallet within the App. We store card names and issuer information only; we never collect actual card numbers, CVVs, or any financial account credentials.</li>
-    <li><strong>Reward program preferences</strong> — your loyalty tier selections to personalize your results.</li>
-  </ul>
-  <p>We do not collect your location, contacts, camera data, or any other personal information beyond what is listed above.</p>
-
-  <h2>3. How We Use Your Information</h2>
-  <p>We use your information solely to:</p>
-  <ul>
-    <li>Create and manage your account.</li>
-    <li>Sync your saved cards and preferences across devices.</li>
-    <li>Provide personalized credit card reward rankings based on your wallet.</li>
-    <li>Display relevant financial product promotions within the App.</li>
+    <li>Your email address and encrypted password</li>
+    <li>The list of credit cards you add to the app</li>
+    <li>Your in-app preferences (e.g. dark mode, biometric settings)</li>
   </ul>
 
-  <h2>4. Biometric Data (Face ID)</h2>
-  <p>The App offers Face ID as a convenient login option. Face ID authentication is processed entirely by your device's operating system (iOS) and Apple's secure enclave. We never receive, store, or transmit your biometric data. Enabling Face ID is optional — you can always sign in with your email and password instead.</p>
+  <h2>Advertising</h2>
+  <p>Rewards Easily displays ads served by Google AdMob. AdMob may collect device identifiers and usage data to serve relevant ads. You can learn more about Google's data practices at <a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a>.</p>
 
-  <h2>5. Data Storage and Security</h2>
-  <p>Your account data is stored securely using Google Firebase, a trusted cloud platform. Firebase uses industry-standard encryption in transit (TLS) and at rest. We do not sell, rent, or share your personal information with third parties for marketing purposes.</p>
-
-  <h2>6. Promotional Content</h2>
-  <p>The App displays promotional banners for financial products such as credit cards. These are curated by us and are not served by third-party ad networks. Tapping a promotional banner may open an external website operated by a third party. We encourage you to review the privacy policies of any external sites you visit.</p>
-
-  <h2>7. Children's Privacy</h2>
-  <p>The App is not directed to children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe we have inadvertently collected such information, please contact us and we will delete it promptly.</p>
-
-  <h2>8. Your Rights</h2>
-  <p>You may at any time:</p>
+  <h2>How We Use Your Information</h2>
   <ul>
-    <li>Access or update your account information by logging into the App.</li>
-    <li>Delete your account by contacting us — this will permanently remove all your stored card selections and preferences.</li>
-    <li>Opt out of promotional content by not tapping promotional banners.</li>
+    <li>To sync your saved cards across your devices</li>
+    <li>To provide and improve the app's features</li>
+    <li>To serve ads through Google AdMob</li>
   </ul>
 
-  <h2>9. Changes to This Policy</h2>
-  <p>We may update this Privacy Policy from time to time. We will notify you of significant changes by updating the effective date at the top of this document. Continued use of the App after changes constitutes your acceptance of the updated policy.</p>
+  <h2>Data Storage</h2>
+  <p>Account data is stored securely using Google Firebase. We do not sell your data to third parties.</p>
 
-  <h2>10. Contact Us</h2>
-  <p>If you have any questions about this Privacy Policy or your data, please contact us at:</p>
-  <div class="contact-box">
-    <p><strong>Redwoods LLC</strong></p>
-    <p>Email: <a href="mailto:privacy@rewardseasily.app">privacy@rewardseasily.app</a></p>
-  </div>
+  <h2>Account Deletion</h2>
+  <p>You can delete your account at any time from within the app. Go to <strong>My Cards → scroll to Account → Delete Account</strong>. This permanently removes your account and all associated data.</p>
+
+  <h2>Children's Privacy</h2>
+  <p>Rewards Easily is not directed to children under 13. We do not knowingly collect personal information from children.</p>
+
+  <h2>Contact Us</h2>
+  <p>If you have questions about this privacy policy, please contact us at <a href="mailto:support@rewardseasily.app">support@rewardseasily.app</a>.</p>
 </div>
 
-<footer>
-  &copy; 2026 Redwoods LLC · Rewards Easily · All rights reserved.
-</footer>
+<footer>© 2025 Redwoods LLC</footer>
 
 </body>
 </html>
