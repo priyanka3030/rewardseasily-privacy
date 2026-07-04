@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rewards Easily — Always Swipe the Right Card</title>
+  <meta name="description" content="Rewards Easily instantly tells you which credit card earns the most on every purchase. Dining, groceries, gas, travel and more." />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold: #F07A00;
+      --gold-dim: rgba(240,122,0,0.15);
+      --bg: #111111;
+      --bg2: #1A1A1A;
+      --bg3: #222222;
+      --text: #FFFFFF;
+      --text-sec: #888888;
+      --text-muted: #444444;
+      --border: #2A2A2A;
+      --green: #2D9B6F;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { opacity: 0.8; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(17,17,17,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-size: 18px; font-weight: 800; letter-spacing: -0.5px; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { font-size: 14px; color: var(--text-sec); font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); opacity: 1; }
+    .nav-cta {
+      background: var(--gold); color: #111; font-size: 13px; font-weight: 700;
+      padding: 10px 20px; border-radius: 6px; letter-spacing: 0.3px;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      background: linear-gradient(160deg, #1C1C1C 0%, #111111 60%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(240,122,0,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(40px, 7vw, 80px);
+      font-weight: 800; letter-spacing: -2px; line-height: 1.05;
+      margin-bottom: 24px;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: var(--text-sec); max-width: 520px; margin-bottom: 48px; line-height: 1.7;
+    }
+    .btn-group { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .btn-primary {
+      background: var(--gold); color: #111;
+      font-size: 15px; font-weight: 700; letter-spacing: 0.3px;
+      padding: 16px 32px; border-radius: 8px;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-secondary {
+      background: transparent; color: var(--text);
+      font-size: 15px; font-weight: 600;
+      padding: 16px 32px; border-radius: 8px;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--gold); opacity: 1; transform: translateY(-1px); }
+
+    /* ── PHONE MOCKUP ── */
+    .phone-mockup {
+      margin-top: 72px;
+      position: relative; display: inline-block;
+    }
+    .phone-frame {
+      width: 280px;
+      background: #111;
+      border-radius: 40px;
+      border: 4px solid #2A2A2A;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.8), 0 0 0 1px #333, 0 0 60px rgba(240,122,0,0.06);
+    }
+    .phone-notch {
+      background: #111; height: 28px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .notch-pill { width: 64px; height: 16px; background: #000; border-radius: 10px; }
+    .phone-content { padding: 0; }
+    .mock-header {
+      background: #111; padding: 12px 16px 10px;
+      text-align: center; border-bottom: 1px solid #222;
+    }
+    .mock-logo { font-size: 18px; font-weight: 800; color: #fff; }
+    .mock-logo span { color: var(--gold); }
+    .mock-tag { font-size: 9px; color: #555; margin-top: 2px; }
+    .mock-search {
+      margin: 12px 14px 0;
+      background: #1A1A1A; border: 1px solid #2A2A2A;
+      border-radius: 8px; padding: 10px 14px;
+      display: flex; align-items: center; gap: 8px;
+      font-size: 11px; color: #444;
+    }
+    .mock-cat { margin: 10px 14px; display: flex; flex-direction: column; gap: 6px; }
+    .mock-cat-item {
+      background: #1A1A1A; border: 1px solid #2A2A2A;
+      border-radius: 6px; padding: 10px 12px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .mock-cat-info { flex: 1; }
+    .mock-cat-name { font-size: 12px; font-weight: 600; color: #fff; }
+    .mock-cat-desc { font-size: 9px; color: #555; margin-top: 1px; }
+    .mock-arrow { font-size: 12px; color: #444; }
+    .mock-tab {
+      background: #111; border-top: 1px solid #222;
+      padding: 8px 0 12px; display: flex;
+    }
+    .mock-tab-item { flex: 1; text-align: center; }
+    .mock-tab-icon { font-size: 12px; }
+    .mock-tab-label { font-size: 8px; color: #555; margin-top: 2px; }
+
+    /* ── FEATURES ── */
+    .features {
+      padding: 100px 24px;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .section-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 16px; text-align: center;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800; letter-spacing: -1px; text-align: center; margin-bottom: 64px;
+    }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;
+    }
+    .feature-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 32px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .feature-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .feature-icon { font-size: 32px; margin-bottom: 16px; }
+    .feature-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .feature-desc { font-size: 14px; color: var(--text-sec); line-height: 1.7; }
+
+    /* ── HOW IT WORKS ── */
+    .how {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 100px 24px;
+    }
+    .how-inner { max-width: 900px; margin: 0 auto; }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; margin-top: 64px; }
+    .step { text-align: center; }
+    .step-num {
+      width: 48px; height: 48px; border-radius: 24px;
+      background: var(--gold-dim); border: 1px solid rgba(240,122,0,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 800; color: var(--gold);
+      margin: 0 auto 20px;
+    }
+    .step-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .step-desc { font-size: 13px; color: var(--text-sec); line-height: 1.7; }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 100px 24px;
+      text-align: center;
+      background: linear-gradient(160deg, #1C1C1C 0%, #111111 100%);
+    }
+    .cta-section h2 {
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 800; letter-spacing: -1.5px; margin-bottom: 16px;
+    }
+    .cta-section h2 span { color: var(--gold); }
+    .cta-section p { font-size: 16px; color: var(--text-sec); margin-bottom: 40px; }
+    .store-badge {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px 24px;
+      font-size: 14px; font-weight: 600; color: var(--text);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .store-badge:hover { border-color: var(--gold); opacity: 1; transform: translateY(-2px); }
+    .store-badge-icon { font-size: 28px; }
+    .store-badge-text-sub { font-size: 10px; color: var(--text-sec); font-weight: 400; }
+    .store-badge-text-main { font-size: 15px; font-weight: 700; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 24px;
+    }
+    .footer-logo { font-size: 16px; font-weight: 800; }
+    .footer-logo span { color: var(--gold); }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-links a { font-size: 13px; color: var(--text-muted); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); opacity: 1; }
+    .footer-copy { font-size: 12px; color: var(--text-muted); }
+
+    /* ── PRIVACY PAGE ── */
+    .page-section {
+      max-width: 760px; margin: 0 auto;
+      padding: 120px 24px 80px;
+    }
+    .page-section h1 { font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+    .page-section .updated { font-size: 13px; color: var(--text-muted); margin-bottom: 48px; }
+    .page-section h2 { font-size: 18px; font-weight: 700; margin: 36px 0 12px; color: var(--gold); }
+    .page-section p, .page-section li { font-size: 15px; color: var(--text-sec); line-height: 1.8; margin-bottom: 12px; }
+    .page-section ul { padding-left: 20px; }
+
+    /* ── SUPPORT PAGE ── */
+    .support-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 32px; margin-bottom: 20px;
+    }
+    .support-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .support-card p { font-size: 14px; color: var(--text-sec); line-height: 1.7; }
+    .support-email {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold-dim); border: 1px solid rgba(240,122,0,0.3);
+      border-radius: 6px; padding: 12px 20px;
+      font-size: 14px; color: var(--gold); font-weight: 600;
+      margin-top: 16px;
+    }
+
+    /* ── PAGE VISIBILITY ── */
+    .page { display: none; }
+    .page.active { display: block; }
+    #home-page { display: block; }
+
+    /* ── RESPONSIVE ── */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer;
+      background: none; border: none; padding: 4px;
+    }
+    .hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; display: block; transition: 0.3s; }
+    .mobile-menu {
+      display: none; flex-direction: column;
+      position: fixed; top: 64px; left: 0; right: 0; z-index: 99;
+      background: rgba(17,17,17,0.98); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px 24px;
+      gap: 4px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 16px; color: var(--text-sec); font-weight: 500;
+      padding: 12px 0; border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="showPage('home')" style="cursor:pointer">Rewards <span>Easily</span></div>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#how">How It Works</a>
+    <a href="support.html">Support</a>
+    <a href="privacy-policy.html">Privacy</a>
+  </div>
+  <a class="nav-cta" href="#download">Download</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#features" onclick="closeMenu()">Features</a>
+  <a href="#how" onclick="closeMenu()">How It Works</a>
+  <a href="support.html">Support</a>
+  <a href="privacy-policy.html">Privacy Policy</a>
+  <a href="https://apps.apple.com/app/rewards-easily/id6776093993" target="_blank" style="color:var(--gold)">⬇ Download on App Store</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ HOME PAGE -->
+<div id="home-page" class="page active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Credit Card Rewards Optimizer</div>
+    <h1>Always swipe<br>the <span>right card</span></h1>
+    <p class="hero-sub">Stop guessing at checkout. Rewards Easily instantly ranks your cards so you always maximize points and cash back.</p>
+    <div class="btn-group">
+      <a class="btn-primary" href="https://apps.apple.com/app/rewards-easily/id6776093993" target="_blank">
+        <span>🍎</span> Download on the App Store
+      </a>
+      <a class="btn-secondary" href="#features">See Features</a>
+    </div>
+
+    <!-- Phone mockup -->
+    <div class="phone-mockup">
+      <div class="phone-frame">
+        <div class="phone-notch"><div class="notch-pill"></div></div>
+        <div class="phone-content">
+          <div class="mock-header">
+            <div class="mock-logo">Rewards <span>Easily</span></div>
+            <div class="mock-tag">Find the best card for every purchase</div>
+          </div>
+          <div class="mock-search">🔍 <span>Search merchant…</span></div>
+          <div class="mock-cat">
+            <div class="mock-cat-item">
+              <span>🍽️</span>
+              <div class="mock-cat-info"><div class="mock-cat-name">Dining</div><div class="mock-cat-desc">Restaurants, cafes, takeout</div></div>
+              <span class="mock-arrow">›</span>
+            </div>
+            <div class="mock-cat-item">
+              <span>🛒</span>
+              <div class="mock-cat-info"><div class="mock-cat-name">Groceries</div><div class="mock-cat-desc">Supermarkets & grocery stores</div></div>
+              <span class="mock-arrow">›</span>
+            </div>
+            <div class="mock-cat-item">
+              <span>⛽</span>
+              <div class="mock-cat-info"><div class="mock-cat-name">Gas</div><div class="mock-cat-desc">Gas stations</div></div>
+              <span class="mock-arrow">›</span>
+            </div>
+            <div class="mock-cat-item">
+              <span>✈️</span>
+              <div class="mock-cat-info"><div class="mock-cat-name">Travel</div><div class="mock-cat-desc">Flights, hotels, rideshare</div></div>
+              <span class="mock-arrow">›</span>
+            </div>
+          </div>
+          <div class="mock-tab">
+            <div class="mock-tab-item"><div class="mock-tab-icon">◈</div><div class="mock-tab-label" style="color:var(--gold)">Categories</div></div>
+            <div class="mock-tab-item"><div class="mock-tab-icon">✧</div><div class="mock-tab-label">Discover</div></div>
+            <div class="mock-tab-item"><div class="mock-tab-icon">▫</div><div class="mock-tab-label">My Cards</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="section-eyebrow">Why Rewards Easily</div>
+    <h2 class="section-title">Everything you need to maximize rewards</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">Instant rankings</div>
+        <div class="feature-desc">Pick a category or search a merchant and instantly see every card in your wallet ranked by reward rate.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <div class="feature-title">See exact cash back</div>
+        <div class="feature-desc">Enter a purchase amount and see the precise dollar amount you'd earn with each card — not just percentages.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔥</div>
+        <div class="feature-title">Limited-time offers</div>
+        <div class="feature-desc">Bonus rewards and limited-time offers are surfaced front and center so you never miss extra points.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <div class="feature-title">Merchant search</div>
+        <div class="feature-desc">Type any store — Amazon, Starbucks, Whole Foods — and we automatically find the right spending category.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✦</div>
+        <div class="feature-title">Cards worth adding</div>
+        <div class="feature-desc">Discover which cards outside your wallet could earn you more. Know your next best card before you apply.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <div class="feature-title">No account required</div>
+        <div class="feature-desc">Use the app instantly as a guest. Create a free account only if you want to sync across devices.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how" id="how">
+    <div class="how-inner">
+      <div class="section-eyebrow">How It Works</div>
+      <h2 class="section-title">Three steps to better rewards</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-title">Add your cards</div>
+          <div class="step-desc">Tell us which credit cards you carry. No card numbers — just the card name.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-title">Pick a category</div>
+          <div class="step-desc">Choose where you're shopping — or search for a specific merchant like Costco or Delta.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-title">Swipe the best card</div>
+          <div class="step-desc">See your wallet ranked by reward rate. Use the top card and earn more on every purchase.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD CTA -->
+  <section class="cta-section" id="download">
+    <h2>Start earning <span>more</span> today</h2>
+    <p>Free to download. No account required. Works with any credit card.</p>
+    <a class="store-badge" href="https://apps.apple.com/app/rewards-easily/id6776093993" target="_blank">
+      <span class="store-badge-icon">🍎</span>
+      <div>
+        <div class="store-badge-text-sub">Download on the</div>
+        <div class="store-badge-text-main">App Store</div>
+      </div>
+    </a>
+  </section>
+
+</div><!-- /home-page -->
+
+<!-- ═══════════════════════════════════════════════════════ PRIVACY PAGE -->
+<div id="privacy-page" class="page">
+  <div class="page-section">
+    <h1>Privacy Policy</h1>
+    <div class="updated">Last updated: June 2025</div>
+
+    <p>Rewards Easily ("we," "our," or "us") is committed to protecting your privacy. This policy explains what information we collect, how we use it, and your rights.</p>
+
+    <h2>Information We Collect</h2>
+    <p>When you use Rewards Easily as a guest, we do not collect any personal information. If you create an account, we collect:</p>
+    <ul>
+      <li>Your email address and encrypted password</li>
+      <li>The list of credit cards you add to the app</li>
+      <li>Your in-app preferences (e.g. dark mode, biometric settings)</li>
+    </ul>
+
+    <h2>Advertising</h2>
+    <p>Rewards Easily displays ads served by Google AdMob. AdMob may collect device identifiers and usage data to serve relevant ads. You can learn more about Google's data practices at <a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a>.</p>
+
+    <h2>How We Use Your Information</h2>
+    <ul>
+      <li>To sync your saved cards across your devices</li>
+      <li>To provide and improve the app's features</li>
+      <li>To serve ads through Google AdMob</li>
+    </ul>
+
+    <h2>Data Storage</h2>
+    <p>Account data is stored securely using Google Firebase. We do not sell your data to third parties.</p>
+
+    <h2>Account Deletion</h2>
+    <p>You can delete your account at any time from within the app. Go to <strong>My Cards → scroll to Account → Delete Account</strong>. This permanently removes your account and all associated data.</p>
+
+    <h2>Children's Privacy</h2>
+    <p>Rewards Easily is not directed to children under 13. We do not knowingly collect personal information from children.</p>
+
+    <h2>Contact Us</h2>
+    <p>If you have questions about this privacy policy, please contact us at <a href="mailto:support@rewardseasily.app">support@rewardseasily.app</a>.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ SUPPORT PAGE -->
+<div id="support-page" class="page">
+  <div class="page-section">
+    <h1>Support</h1>
+    <div class="updated">We're here to help</div>
+
+    <div class="support-card">
+      <h3>🃏 How do I add my credit cards?</h3>
+      <p>Tap the <strong>My Cards</strong> tab at the bottom of the app. Use the search bar to find your card by name, then tap the + button to add it to your wallet.</p>
+    </div>
+
+    <div class="support-card">
+      <h3>🔍 My merchant isn't being recognized</h3>
+      <p>Not every merchant is in our database yet. If a search doesn't find a match, simply pick the closest spending category manually (e.g. choose "Dining" for a restaurant).</p>
+    </div>
+
+    <div class="support-card">
+      <h3>📱 How do I sync across devices?</h3>
+      <p>Create a free account by tapping <strong>Log In</strong> on the My Cards screen. Once signed in, your cards sync automatically across all your devices.</p>
+    </div>
+
+    <div class="support-card">
+      <h3>🗑️ How do I delete my account?</h3>
+      <p>Go to the <strong>My Cards</strong> tab → scroll to the bottom → tap <strong>Delete Account</strong>. This permanently removes your account and all saved data.</p>
+    </div>
+
+    <div class="support-card">
+      <h3>📧 Still need help?</h3>
+      <p>Send us an email and we'll get back to you within 24 hours.</p>
+      <a class="support-email" href="mailto:support@rewardseasily.app">✉️ support@rewardseasily.app</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Rewards <span>Easily</span></div>
+  <div class="footer-links">
+    <a href="javascript:void(0)" onclick="showPage('home')">Home</a>
+    <a href="support.html">Support</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+  </div>
+  <div class="footer-copy">© 2025 Redwoods LLC</div>
+</footer>
+
+<script>
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(name + '-page').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function toggleMenu() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobile-menu').classList.remove('open');
+  }
+</script>
+
+</body>
+</html>

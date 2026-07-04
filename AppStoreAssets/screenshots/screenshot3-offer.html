@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1242px; height: 2688px;
+    background: #111111;
+    font-family: -apple-system, 'SF Pro Display', sans-serif;
+    overflow: hidden;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .bg { position: absolute; inset: 0; background: linear-gradient(160deg, #1C1C1C 0%, #111111 60%); }
+  .headline { position: relative; margin-top: 160px; text-align: center; z-index: 10; }
+  .headline h1 { font-size: 88px; font-weight: 800; color: #FFFFFF; letter-spacing: -2px; line-height: 1.05; }
+  .headline h1 span { color: #C9A84C; }
+  .headline p { margin-top: 28px; font-size: 42px; color: #888; }
+
+  .phone-wrap { position: relative; margin-top: 80px; z-index: 10; }
+  .phone {
+    width: 700px; background: #111111;
+    border-radius: 80px; border: 8px solid #2A2A2A;
+    overflow: hidden;
+    box-shadow: 0 60px 120px rgba(0,0,0,0.8), 0 0 0 1px #333;
+  }
+  .phone-notch { background: #111111; height: 50px; display: flex; align-items: center; justify-content: center; }
+  .notch-pill { width: 140px; height: 32px; background: #000; border-radius: 20px; }
+
+  .app-header {
+    background: #111111; padding: 16px 24px;
+    display: flex; align-items: center; gap: 14px;
+    border-bottom: 1px solid #222;
+  }
+  .back-btn { font-size: 22px; color: #C9A84C; }
+  .header-icon { font-size: 30px; }
+  .header-title { font-size: 26px; font-weight: 700; color: #FFF; }
+
+  .amount-bar { background: #1A1A1A; padding: 16px 24px; border-bottom: 1px solid #222; }
+  .amount-label { font-size: 16px; color: #555; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .amount-input { background: #111; border: 1px solid #2A2A2A; border-radius: 6px; padding: 14px 18px; display: flex; align-items: center; gap: 6px; }
+  .amount-sym { font-size: 20px; color: #555; }
+  .amount-val { font-size: 20px; color: #777; }
+
+  .section-header { padding: 18px 24px 6px; }
+  .section-label { font-size: 16px; color: #666; text-transform: uppercase; letter-spacing: 1px; }
+  .offer-hint { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+  .offer-dot { width: 8px; height: 8px; border-radius: 4px; background: #C9A84C; }
+  .offer-text { font-size: 17px; color: #C9A84C; }
+
+  .result-card {
+    margin: 0 24px 10px;
+    background: #1A1A1A; border-radius: 8px; border: 1px solid #2A2A2A;
+    padding: 20px 20px; display: flex; align-items: center; position: relative;
+  }
+  .result-card.offer { border-color: #C9A84C; border-width: 2px; }
+  .offer-badge {
+    position: absolute; top: -11px; left: 18px;
+    background: #C9A84C; border-radius: 3px; padding: 3px 10px;
+    font-size: 14px; font-weight: 700; color: #111; text-transform: uppercase; letter-spacing: 0.8px;
+  }
+  .card-stripe { width: 4px; height: 44px; border-radius: 2px; margin-right: 16px; }
+  .card-info { flex: 1; }
+  .card-name { font-size: 22px; font-weight: 600; color: #FFF; }
+  .card-issuer { font-size: 17px; color: #666; margin-top: 3px; }
+  .card-offer-text { font-size: 16px; color: #C9A84C; margin-top: 5px; }
+  .card-rate { text-align: right; }
+  .rate-pct { font-size: 28px; font-weight: 700; color: #C9A84C; }
+  .rate-pct.white { color: #FFF; }
+  .rate-cash { font-size: 16px; color: #2D9B6F; margin-top: 3px; }
+
+  .tab-bar { background: #111111; border-top: 1px solid #222; padding: 12px 0 20px; display: flex; }
+  .tab { flex: 1; text-align: center; padding: 8px 0; }
+  .tab-icon { font-size: 22px; }
+  .tab-label { font-size: 16px; color: #555; margin-top: 4px; }
+</style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="headline">
+    <h1>Never miss a<br><span>limited offer</span></h1>
+    <p>Bonus rewards, front and center</p>
+  </div>
+
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="phone-notch"><div class="notch-pill"></div></div>
+      <div class="app-header">
+        <span class="back-btn">‹</span>
+        <span class="header-icon">🛒</span>
+        <span class="header-title">Groceries</span>
+      </div>
+      <div class="amount-bar">
+        <div class="amount-label">Purchase Amount (optional)</div>
+        <div class="amount-input">
+          <span class="amount-sym">$</span>
+          <span class="amount-val">120.00</span>
+        </div>
+      </div>
+      <div class="section-header">
+        <div class="section-label">From your wallet · 3 cards</div>
+        <div class="offer-hint">
+          <div class="offer-dot"></div>
+          <div class="offer-text">Gold Card has a limited offer</div>
+        </div>
+      </div>
+
+      <div class="result-card offer">
+        <div class="offer-badge">🔥 Limited Offer</div>
+        <div class="card-stripe" style="background:#C9A84C"></div>
+        <div class="card-info">
+          <div class="card-name">Gold Card</div>
+          <div class="card-issuer">American Express</div>
+          <div class="card-offer-text">+2% bonus at U.S. supermarkets · ends Jun 30</div>
+        </div>
+        <div class="card-rate">
+          <div class="rate-pct">6.0%</div>
+          <div class="rate-cash">$7.20 back</div>
+        </div>
+      </div>
+
+      <div class="result-card">
+        <div class="card-stripe" style="background:#1A3C5E"></div>
+        <div class="card-info">
+          <div class="card-name">Sapphire Preferred®</div>
+          <div class="card-issuer">Chase</div>
+        </div>
+        <div class="card-rate">
+          <div class="rate-pct white">1.0%</div>
+          <div class="rate-cash">$1.20 back</div>
+        </div>
+      </div>
+
+      <div class="result-card">
+        <div class="card-stripe" style="background:#CC0000"></div>
+        <div class="card-info">
+          <div class="card-name">Venture X</div>
+          <div class="card-issuer">Capital One</div>
+        </div>
+        <div class="card-rate">
+          <div class="rate-pct white">2.0%</div>
+          <div class="rate-cash">$2.40 back</div>
+        </div>
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab">
+          <div class="tab-icon">◈</div>
+          <div class="tab-label" style="color:#C9A84C">Categories</div>
+        </div>
+        <div class="tab">
+          <div class="tab-icon">▫</div>
+          <div class="tab-label">My Cards</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

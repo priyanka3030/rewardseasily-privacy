@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1242px; height: 2688px;
+    background: #111111;
+    font-family: -apple-system, 'SF Pro Display', sans-serif;
+    overflow: hidden;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .bg { position: absolute; inset: 0; background: linear-gradient(160deg, #1C1C1C 0%, #111111 60%); }
+  .headline { position: relative; margin-top: 160px; text-align: center; z-index: 10; }
+  .headline h1 { font-size: 88px; font-weight: 800; color: #FFFFFF; letter-spacing: -2px; line-height: 1.05; }
+  .headline h1 span { color: #C9A84C; }
+  .headline p { margin-top: 28px; font-size: 42px; color: #888; }
+
+  .phone-wrap { position: relative; margin-top: 80px; z-index: 10; }
+  .phone {
+    width: 700px; background: #111111;
+    border-radius: 80px; border: 8px solid #2A2A2A;
+    overflow: hidden;
+    box-shadow: 0 60px 120px rgba(0,0,0,0.8), 0 0 0 1px #333;
+  }
+  .phone-notch { background: #111111; height: 50px; display: flex; align-items: center; justify-content: center; }
+  .notch-pill { width: 140px; height: 32px; background: #000; border-radius: 20px; }
+
+  .app-header {
+    background: #111111; padding: 20px 30px 16px;
+    text-align: center; border-bottom: 1px solid #222;
+  }
+  .logo-text { font-size: 38px; font-weight: 800; color: #FFF; letter-spacing: -1px; }
+  .logo-text span { color: #C9A84C; }
+  .tagline { font-size: 18px; color: #555; margin-top: 6px; }
+
+  .search-section { padding: 20px 24px 0; }
+  .search-bar {
+    background: #1A1A1A; border: 2px solid #C9A84C;
+    border-radius: 14px; padding: 18px 22px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .search-icon { font-size: 24px; }
+  .search-text { font-size: 22px; color: #FFF; }
+
+  .match-result {
+    margin-top: 12px;
+    background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 10px; padding: 18px 20px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .match-icon { font-size: 32px; }
+  .match-info { flex: 1; }
+  .match-title { font-size: 22px; font-weight: 600; color: #FFF; }
+  .match-sub { font-size: 17px; color: #888; margin-top: 3px; }
+  .match-arrow { font-size: 22px; color: #C9A84C; }
+
+  .categories { padding: 16px 24px; }
+  .cat-item {
+    background: #1A1A1A; border: 1px solid #2A2A2A;
+    border-radius: 8px; padding: 16px 18px;
+    display: flex; align-items: center; gap: 14px; margin-bottom: 8px;
+    opacity: 0.45;
+  }
+  .cat-icon { font-size: 26px; width: 38px; text-align: center; }
+  .cat-info { flex: 1; }
+  .cat-name { font-size: 22px; font-weight: 600; color: #FFF; }
+  .cat-desc { font-size: 16px; color: #555; margin-top: 2px; }
+  .cat-arrow { font-size: 22px; color: #444; }
+
+  .tab-bar { background: #111111; border-top: 1px solid #222; padding: 12px 0 20px; display: flex; }
+  .tab { flex: 1; text-align: center; padding: 8px 0; }
+  .tab-icon { font-size: 22px; }
+  .tab-label { font-size: 16px; color: #555; margin-top: 4px; }
+</style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="headline">
+    <h1>Search any merchant,<br><span>instantly</span></h1>
+    <p>Type a store — we find the category</p>
+  </div>
+
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="phone-notch"><div class="notch-pill"></div></div>
+      <div class="app-header">
+        <div class="logo-text">Rewards <span>Easily</span></div>
+        <div class="tagline">Find the best card for every purchase</div>
+      </div>
+
+      <div class="search-section">
+        <div class="search-bar">
+          <span class="search-icon">🔍</span>
+          <span class="search-text">Amazon</span>
+        </div>
+        <div class="match-result">
+          <span class="match-icon">🛍️</span>
+          <div class="match-info">
+            <div class="match-title">Best card for Online Shopping</div>
+            <div class="match-sub">Tap to see your ranking →</div>
+          </div>
+          <span class="match-arrow">›</span>
+        </div>
+      </div>
+
+      <div class="categories">
+        <div class="cat-item">
+          <span class="cat-icon">🍽️</span>
+          <div class="cat-info"><div class="cat-name">Dining</div><div class="cat-desc">Restaurants, cafes, takeout</div></div>
+          <span class="cat-arrow">›</span>
+        </div>
+        <div class="cat-item">
+          <span class="cat-icon">🛒</span>
+          <div class="cat-info"><div class="cat-name">Groceries</div><div class="cat-desc">Supermarkets & grocery stores</div></div>
+          <span class="cat-arrow">›</span>
+        </div>
+        <div class="cat-item">
+          <span class="cat-icon">⛽</span>
+          <div class="cat-info"><div class="cat-name">Gas</div><div class="cat-desc">Gas stations</div></div>
+          <span class="cat-arrow">›</span>
+        </div>
+        <div class="cat-item">
+          <span class="cat-icon">✈️</span>
+          <div class="cat-info"><div class="cat-name">Travel</div><div class="cat-desc">Flights, hotels, rideshare</div></div>
+          <span class="cat-arrow">›</span>
+        </div>
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab">
+          <div class="tab-icon">◈</div>
+          <div class="tab-label" style="color:#C9A84C">Categories</div>
+        </div>
+        <div class="tab">
+          <div class="tab-icon">▫</div>
+          <div class="tab-label">My Cards</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
